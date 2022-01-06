@@ -1,0 +1,24 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ethon (0.15.0)
+      ffi (>= 1.15.0)
+    ffi (1.15.4)
+    json (2.6.1)
+    rmagick (4.2.4)
+    typhoeus (1.4.0)
+      ethon (>= 0.9.0)
+
+PLATFORMS
+  x86_64-darwin-19
+
+DEPENDENCIES
+  json
+  rmagick
+  typhoeus
+
+RUBY VERSION
+   ruby 3.0.3p157
+
+BUNDLED WITH
+   2.2.32
