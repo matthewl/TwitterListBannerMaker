@@ -57,9 +57,7 @@ bearer_token = ENV['BEARER_TOKEN']
 
 usernames = [
   # Add your list of Twitter usernames here - automating this might follow
-  'austinkleon', 'basecamp', 'david_perell', 'sivers', 'dhh', 'jamesclear', 'jasonfried', 
-  'mijustin', 'zen_habits', 'rohdesign', 'randallkanna', 'rydercarroll', 'thisissethsblog',
-  'shawnblanc', 'tnvora', 'textexpander'
+  # e.g. 'dhh', 'rubyonrails'
 ]
 
 username_rows = each_alternating_slice(usernames, 7, 6)
