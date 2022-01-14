@@ -5,6 +5,7 @@ GEM
       ffi (>= 1.15.0)
     ffi (1.15.4)
     json (2.6.1)
+    oauth (0.5.8)
     rmagick (4.2.4)
     typhoeus (1.4.0)
       ethon (>= 0.9.0)
@@ -14,6 +15,7 @@ PLATFORMS
 
 DEPENDENCIES
   json
+  oauth
   rmagick
   typhoeus
 
