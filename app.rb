@@ -14,7 +14,6 @@ end
 # Set the consumer key and secret of your Twitter application here.
 consumer_key = ENV['CONSUMER_KEY']
 consumer_secret = ENV['CONSUMER_SECRET']
-user_id = ENV['USER_ID']
 
 consumer = OAuth::Consumer.new(
   consumer_key, consumer_secret,
@@ -95,6 +94,24 @@ def each_alternating_slice(array, initial_size, alternate_size)
   end
 
   alternated_array
+end
+
+def fetch_me(oauth_params)
+  url = 'https://api.twitter.com/2/users/me'
+
+  options = {
+    method: :get,
+    headers: {
+      'User-Agent': 'TwitterListBannerMaker',
+      'content-type': 'application/json'
+    },
+    params: {}
+  }
+
+  request = build_request(url, options, oauth_params)
+  response = request.run
+
+  return response
 end
 
 def fetch_lists(user_id, oauth_params)
@@ -180,7 +197,7 @@ def generate_banner_for_list(list_number)
     # TODO: Add a maximum number of members to display.
 
     start_y = 80
-    list_member_rows = each_alternating_slice(list_members, 7, 6)
+    list_member_rows = each_alternating_slice(list_members, 8, 6)
 
     list_member_rows.each do |row|
       start_x = (1200 - (row.length * 75)) / 2
@@ -212,6 +229,8 @@ access_token = obtain_access_token(consumer, request_token, pin)
 @oauth_params = { consumer: consumer, token: access_token }
 
 # Get lists for account
+user = fetch_me(@oauth_params)
+user_id = JSON.parse(user.body)['data']['id']
 response = fetch_lists(user_id, @oauth_params)
 list_data = JSON.parse(response.body)
 
