@@ -19,15 +19,15 @@ Run `bundle install` to install dependent gems.
 
 Run the ruby script with your app's access token and secret passed in as environment variables like so:
 
-```shell
-CONSUMER_KEY=a_key_from_twitter CONSUMER_SECRET=a_secret_from_twitter ruby app.rb
+```
+$ CONSUMER_KEY=a_key_from_twitter CONSUMER_SECRET=a_secret_from_twitter ruby app.rb
 ```
 
 You'll be asked to authenticate your Twitter account against the application by visiting a URL on the Twitter API and entering a pin number.
 
 Once authenticated, the script will display all your Twitter lists.
 
-```shell
+```
 Welcome to TwitterListBannerMaker! 😀
 
 Enter the number of the list you want to use for the banner :
