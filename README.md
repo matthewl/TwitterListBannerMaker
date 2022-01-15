@@ -46,6 +46,14 @@ List number:
 
 Select the list you would like to generate an image for and it will be saved within the same directory as the script.
 
+## To do
+
+- [ ] Can we stash the authentication tokens in a file for later?
+- [ ] Configure the layout to adjust to different sizes of lists.
+- [ ] Add a maximum number of members to display.
+- [ ] Create a single array to store list data.
+- [ ] Add an option to generates images for all lists.
+
 ## License
 
 The source code is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
