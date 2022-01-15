@@ -161,6 +161,7 @@ def display_menu(message = '')
     @max_list = index
   end
 
+  puts ''
   puts "Or enter 'q' to quit"
   
   if @warning_message != ''
