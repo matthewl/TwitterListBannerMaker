@@ -5,6 +5,8 @@ require 'typhoeus'
 require 'oauth/request_proxy/typhoeus_request'
 include Magick
 
+class List < Struct.new(:id, :name); end
+
 class ListMember < Struct.new(:username, :profile_image_url)
   def <=>(other)
     self[:username] <=> other[:username]
@@ -22,9 +24,9 @@ consumer = OAuth::Consumer.new(
   debug_output: false
 )
 
-@list_names = []
-@list_ids = []
+@lists = []
 @max_list = 0
+
 @warning_message = ''
 
 def get_request_token(consumer)
@@ -156,9 +158,9 @@ def display_menu(message = '')
   puts '-------------------------------------------------------------'
   puts ''
 
-  @list_names.each_with_index do |list, index|
-    puts "#{index + 1}. #{list}"
-    @max_list = index
+  @lists.each_with_index do |list, index|
+    puts "#{index + 1}. #{list.name}"
+    @max_list = index + 1
   end
 
   puts ''
@@ -177,7 +179,7 @@ def generate_banner_for_list(list_number)
   if list_number.to_i > @max_list
     @warning_message = 'Invalid list number. Please try again.'
   else
-    list_id = @list_ids[list_number.to_i - 1]
+    list_id = @lists[list_number.to_i - 1].id
 
     # Get the users on that list
     response = fetch_list_members(list_id, @oauth_params)
@@ -235,10 +237,8 @@ user_id = JSON.parse(user.body)['data']['id']
 response = fetch_lists(user_id, @oauth_params)
 list_data = JSON.parse(response.body)
 
-# TODO: Create a single array to store list data
 list_data['data'].each do |list|
-  @list_ids << list['id']
-  @list_names << list['name']
+  @lists << List.new(list['id'], list['name'])
 end
 
 puts 'Welcome to TwitterListBannerMaker! 😀'
